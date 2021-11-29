@@ -2,6 +2,7 @@ package com.example.myapp2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
@@ -9,7 +10,7 @@ import android.widget.Toast
 import kotlin.random.Random
 
 const val TAG = "MainActivity"
-
+const val KEY = "random text"
 class MainActivity : AppCompatActivity() {
 
     lateinit var helloTextView: TextView
@@ -20,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         helloTextView = findViewById(R.id.hello_world_text_view)
         newTextButton = findViewById(R.id.newTextButton2)
+
+        if(savedInstanceState != null) {
+            helloTextView.text = savedInstanceState.getString(KEY)
+        }
         newTextButtonClick()
         Log.d(
             TAG, "Ты видел деву на скале\n" +
@@ -31,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         newTextButton.setOnClickListener {
             helloTextView.text = (Random.nextInt(6) + 1).toString()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(KEY,helloTextView.text.toString())
     }
 
     override fun onStart() {
