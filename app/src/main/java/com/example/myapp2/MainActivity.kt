@@ -1,5 +1,7 @@
 package com.example.myapp2
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -9,12 +11,14 @@ import android.widget.TextView
 import android.widget.Toast
 import kotlin.random.Random
 
+
 const val TAG = "MainActivity"
 const val KEY = "random text"
 class MainActivity : AppCompatActivity() {
 
     lateinit var helloTextView: TextView
     lateinit var newTextButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     fun newTextButtonClick() {
         newTextButton.setOnClickListener {
             helloTextView.text = (Random.nextInt(6) + 1).toString()
+
         }
     }
 
