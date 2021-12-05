@@ -10,78 +10,38 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import kotlin.random.Random
-
-
-const val TAG = "MainActivity"
-const val KEY = "random text"
+private const val HELLO_KEY = "HEllo"
 class MainActivity : AppCompatActivity() {
-
-    lateinit var helloTextView: TextView
-    lateinit var newTextButton: Button
+    lateinit var nextActivityButton: Button
+    lateinit var emailButton: Button
+    lateinit var callButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        helloTextView = findViewById(R.id.hello_world_text_view)
-        newTextButton = findViewById(R.id.newTextButton2)
+        nextActivityButton = findViewById(R.id.next_Activity_button)
+        nextActivityButton.setOnClickListener {
+            val googleLink =Uri.parse("https://google.com")
+            val openBrowserIntent = Intent(Intent.ACTION_VIEW,googleLink)
+            // val chooser = Intent.createChooser(openBrowserIntent,"Browser")
 
-        if(savedInstanceState != null) {
-            helloTextView.text = savedInstanceState.getString(KEY)
+            val secondActivityIntent: Intent = Intent(this, SecondActivity::class.java)
+            secondActivityIntent.putExtra(HELLO_KEY,"Hello from MainActivity")
+            startActivity(secondActivityIntent)
         }
-        newTextButtonClick()
-        Log.d(
-            TAG, "Ты видел деву на скале\n" +
-                    "В одежде белой над волнами"
-        )
-    }
-
-    fun newTextButtonClick() {
-        newTextButton.setOnClickListener {
-            helloTextView.text = (Random.nextInt(6) + 1).toString()
-
+        emailButton = findViewById(R.id.email_Button)
+        emailButton.setOnClickListener {
+            val ourEmail = Uri.parse("mailto:646811@mail.ru")
+            val mailerForUs = Intent(Intent.ACTION_VIEW,ourEmail)
+            startActivity(mailerForUs)
         }
-    }
+        callButton = findViewById(R.id.callMe_Button)
+        callButton.setOnClickListener {
+            val phNumb = Uri.parse("tel:89240170811")
+            val callerForUs = Intent(Intent.ACTION_CALL,phNumb)
+            startActivity(callerForUs)
+        }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString(KEY,helloTextView.text.toString())
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(
-            TAG, "Когда, бушуя в бурной мгле,\n" +
-                    "Играло море с берегами,"
-        )
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "Когда луч молний озарял\n" +
-                "Ее всечасно блеском алым")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "И ветер бился и летал\n" +
-                "С ее летучим покрывалом?")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "Прекрасно море в бурной мгле\n" +
-                "И небо в блесках без лазури;")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d(TAG, "onRestart")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "Но верь мне: дева на скале\n" +
-                "Прекрасней волн, небес и бури.")
     }
 }

@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">MyApp2</string>
+    <string name="app_name" translatable="false">MyApp2</string>
     <string name="newtext">NEW TEXT</string>
+    <string name="next_text">Next activity</string>
+    <string name="next_activity">Next Activity</string>
+    <string name="hello">Hello</string>
+    <string name="Hello">Hello</string>
+    <string name="todo">TOEMAIL</string>
+    <string name="todo2">CallUS</string>
+    <string name="call_us">Call Us</string>
+    <string name="mail_US">Mail US</string>
+    <string name="Call_Us">Call Us</string>
 </resources>

@@ -12,5 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/Theme.MyApp2.TextView</item>
     </style>
+
+    <style name="Theme.MyApp2.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Theme.MyApp2.forButtons" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/yellow</item>
+    </style>
+
+    <style name="Theme.MyApp2.forButtonsText" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <color name="yellow">#FFEB3B</color>
 </resources>
